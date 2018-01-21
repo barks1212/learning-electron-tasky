@@ -9,6 +9,7 @@ class MainWindow extends BrowserWindow {
       frame: false, //removes status bar at top of app
       resizable: false, //does not allow user to resize app window
       show: false, //by default, doesnt show main window to user
+      webPreferences: { backgroundThrottling: false }, //stops chromium from throttling processing and allows functionality to run in background
     });
     this.loadURL(url);
     this.on('blur', this.onBlur.bind(this));
