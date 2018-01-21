@@ -12,6 +12,8 @@ In a new terminal window:
 
 ### How it works
 
+Run electron and note the new icon that appears in your taskbar, click to open the app.
+
 The idea behind this app is that it is intended to be a taskbar app meant to run in the background that adds tasks and sets a timer within which they are meant to be completed.
 
 For this app I had to create a new icon in the tray and speccing the main window of the app to be a certain size and appear to directly drop down from the tray no matter where the users tray is.
