@@ -14,7 +14,10 @@ app.on('ready', () => {
     resizable: false, //does not allow user to resize app window
     show: false, //by default, doesnt show main window to user
   });
-  mainWindow.loadURL(`file://${__dirname}/src/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/src/index.html`);
+  mainWindow.on('blur', () => {
+    mainWindow.hide(); //hides app window on blur
+  })
 
   const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
   const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
