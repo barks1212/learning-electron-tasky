@@ -1,5 +1,6 @@
 const path = require('path');
 const electron = require('electron');
+const TimerTray = require('./app/timer-tray');
 const { app, BrowserWindow, Tray } = electron;
 
 let mainWindow;
@@ -18,7 +19,7 @@ app.on('ready', () => {
   const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
   const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
 
-  tray = new Tray(iconPath);
+  tray = new TimerTray(iconPath);
   tray.on('click', (event, bounds) => {
     const { x, y } = bounds; //bounds refers to window position on OS' main window, this code gives the bounds for the onClick event
 
@@ -32,7 +33,7 @@ app.on('ready', () => {
         x: x - width /  2, //window x defines left hand side of window, not center, so subtracting half the width of the window gives a centrallised position
         y: yPosition,
         height,
-        width
+        width 
       });
       mainWindow.show();
     }
