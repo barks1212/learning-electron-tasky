@@ -27,12 +27,13 @@ app.on('ready', () => {
     if (mainWindow.isVisible()) {
       mainWindow.hide();
     } else {
+      const yPosition = process.platform === 'darwin' ? y : y - height; //turnary to accomodate windows OS
       mainWindow.setBounds({
         x: x - width /  2, //window x defines left hand side of window, not center, so subtracting half the width of the window gives a centrallised position
-        y,
+        y: yPosition,
         height,
         width
-      })
+      });
       mainWindow.show();
     }
   })
