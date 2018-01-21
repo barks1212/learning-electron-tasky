@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { Tray } = electron
+const { Tray, app, Menu } = electron
 
 class TimerTray extends Tray {
   constructor(iconPath, mainWindow) {
@@ -8,6 +8,7 @@ class TimerTray extends Tray {
     this.mainWindow = mainWindow;
     this.setToolTip('Timer App');
     this.on('click', this.onClick.bind(this));
+    this.on('right-click', this.onRightClick.bind(this));
   }
 
   onClick(event, bounds) {
@@ -28,8 +29,18 @@ class TimerTray extends Tray {
       this.mainWindow.show();
     }
   }
-}
   // Here we define a new Tray icon and pass it the path to the relevant files. We then define an on click function with a conditional statement using a method isVisible. The onclick will then either show or hide the window.
+
+  onRightClick() {
+    const menuConfig = Menu.buildFromTemplate([ //builds menu template, always takes array of objects
+      {
+        label: 'Quit',
+        click: () => app.quit()
+    }
+    ]);
+    this.popUpContextMenu(menuConfig); //base Tray class method referenced with "this"
+  }
+}
 
 
 module.exports = TimerTray;
